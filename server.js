@@ -16,8 +16,11 @@ let balance = 100;
 let history = [];
 let dailyClaimed = false;
 
-const SPIN_COST = 10;
+const SPIN_COST = 0;
 
+function uniqueCode(prefix) {
+  return `${prefix}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+}
 function randomResult() {
   const rand = Math.random();
 
@@ -45,30 +48,30 @@ function symbolsForResult(resultType) {
 function buildPrize(resultType) {
   if (resultType === "discount") {
     return {
-      code: "SLOT-15OFF",
+      code: uniqueCode("SLOT15"),
       description: "Descuento 15%",
     };
   }
 
   if (resultType === "free_ship") {
     return {
-      code: "ENVIO-GRATIS",
+      code: uniqueCode("ENVIO"),
       description: "Envío gratis",
     };
   }
 
   if (resultType === "vip") {
     return {
-      code: "VIP-ACCESS",
+      code: uniqueCode("VIP"),
       description: "Acceso VIP",
     };
   }
 
   if (resultType === "shirt") {
     return {
-      code: "CAMISETA-GRATIS",
+      code: uniqueCode("SHIRT"),
       product_name: "Camiseta retro sorpresa",
-      product_image: "",
+      product_image: "https://cdn.shopify.com/s/files/1/0000/0000/files/camiseta-demo.jpg",
       product_url: "/collections/all",
       description: "Camiseta retro gratis",
     };
@@ -76,9 +79,9 @@ function buildPrize(resultType) {
 
   if (resultType === "jackpot") {
     return {
-      code: "JACKPOT",
+      code: uniqueCode("JACKPOT"),
       product_name: "Camiseta jackpot",
-      product_image: "",
+      product_image: "https://cdn.shopify.com/s/files/1/0000/0000/files/camiseta-jackpot.jpg",
       product_url: "/collections/all",
       description: "¡Jackpot!",
     };
